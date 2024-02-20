@@ -39,5 +39,19 @@ print(fruits)
 
 fruits.remove("watermelon")
 print(fruits)
-fruits.pop(0)
+print(fruits.pop(0))
 print(fruits)
+
+fruits[1:3] = ["papaya", "kiwi"]  #change a range of elements
+print(fruits)
+
+fruits[1:2] = ["grapes", "melon"]  
+print(fruits)
+fruits[1:3] = ["blueberry"]
+print(fruits)
+
+l1 = [1, 3, 5, 7]
+l2 = [2, 4, 6, 8]
+l1.extend(l2)  #add l2 to l1
+print(l1)      # can add list, tuple, set, dictionary
+
