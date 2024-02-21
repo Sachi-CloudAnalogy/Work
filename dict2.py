@@ -31,3 +31,12 @@ new_dict = {"name" : "Rahul", "year" : 2024}  #duplicate keys not allowed
                                               #it only overwrite them
 dict.update(new_dict)
 print(dict)
+
+del new_dict["year"]
+print(new_dict)
+
+#del can delete complete dict
+#clear() will empty the dict.
+
+for x, y in new_dict.items():
+    print(x, y)

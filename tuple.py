@@ -28,3 +28,8 @@ print(tup[1:3])
 
 print(tup.index(9))
 print(tup.count(3))
+
+#delete complete tuple
+del tup
+#print(tup)  will give error
+#as it doesnt exist now
