@@ -14,9 +14,9 @@ def flip(n):
             tail +=1
         i += 1        
     print("No of heads =", head)
-    print("No of tail =", tail)
+    print("No of tails =", tail)
     print("Probability of getting head =", head/n)
-    print("Probability ogf getting tail =", tail/n)
+    print("Probability of getting tail =", tail/n)
 
 n = int(input("Total no of coin flips = "))
 flip(n)

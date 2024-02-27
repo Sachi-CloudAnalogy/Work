@@ -1,6 +1,6 @@
 import psycopg2
 
-conn = psycopg2.connect(host = "localhost", dbname = "mynewdb", user = "postgres", password = 'sfdc123*', port = 5432)
+conn = psycopg2.connect(host = "localhost", dbname = "mynewdb", user = "sachi", password = 'abc123', port = 5432)
 cur = conn.cursor()
 
 cur.execute("DROP TABLE company;")
