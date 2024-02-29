@@ -5,10 +5,11 @@ n = len(arr)
 target = int(input("Enter target value : "))
 
 def find(arr, n, target):
+    #sorting the array
     arr.sort()
     for i in range(0,(n-2)):
-            last = n-1
-            next = i+1
+            last = n-1    #last element
+            next = i+1    #2nd element
             while(next < last):
                 if arr[i] + arr[next] +arr[last] == target:
                     print(f"{arr[i]},{arr[next]},{arr[last]}")
