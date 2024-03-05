@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Using Jinja in templates !!</h1>
+
+    {# Using Variable {{}} #}
+    <h1>Hello {{author}} !!</h1>
+
+    {# conditional statements #}
+    {% if in_india %}
+    <h3>Lives in India</h3>
+    {% else %}
+    <h3>Not in India</h3>
+    {% endif %}
+
+    {# for loop #}
+    {% for i in library%}
+    <p>{{i.title}}</p>
+    <p>By {{i.author}}</p>
+    {% endfor %}
+
+</body>
+</html>
