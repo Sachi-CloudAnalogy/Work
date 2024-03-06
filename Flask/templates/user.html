@@ -2,12 +2,17 @@
 {% block content %}
 
 <table border="1">
+    <caption>User Information : </caption>
     {% for key, value in result.items() %}
+
     <tr>
         <th>{{key}}</th>
         <td>{{value}}</td>
     </tr>
+
     {% endfor %}
 </table>
 
 {% endblock %}
+
+{# <!-- signup.html, user.html, forms.py and signup.py  --- are part of same program --> #}

@@ -6,7 +6,9 @@ app.config["SECRET_KEY"] = "key123"       #secret key
 
 @app.route("/signup", methods=['GET','POST'])
 def signup():                 #creating signup form
+
     form = SignUpForm()
+    #if form.validate_on_submit():                  #validating form
     if form.is_submitted():
         result = request.form
         return render_template('user.html', result=result)
@@ -14,3 +16,6 @@ def signup():                 #creating signup form
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+# signup.html, user.html, forms.py and signup.py  --- are part of same program

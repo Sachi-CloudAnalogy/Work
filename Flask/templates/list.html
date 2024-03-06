@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--To save data to database-->
+    <h1>TASK LIST !!</h1>
+    <h2>Enter new Tasks</h2>
+    <form action="/" method="POST">
+        <div>
+            <label for="task_title">Task Title</label>
+            <input type="text" id="task_title" name="title">
+        </div>
+        <br>
+        <div>
+            <label for="task_desc">Task Description</label>
+            <input type="text" id="task_desc" name="desc">
+        </div>
+        <br>
+        <div>
+            <label for="task_done">Task Done</label>
+            <input type="text" id="task_done" name="done">
+        </div>
+        <br>
+        <button type="submit">Submit</button>
+        <br>
+    </form>
+ 
+    <!--To display data from database-->
+    <h2>Your Tasks</h2>
+    <table border="1">
+        <tr>
+            <th>S.No</th>
+            <th>Task Title</th>
+            <th>Task Description</th>
+            <th>Done or Not</th>
+        </tr>
+        {% for task in task_list %}
+        <tr>
+            <td>{{task.sno}}</td>
+            <td>{{task.title}}</td>
+            <td>{{task.desc}}</td>
+            <td>{{task.done}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

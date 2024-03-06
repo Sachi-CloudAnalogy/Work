@@ -51,7 +51,7 @@ class Thing(Base):
 t1 = Thing(12, 'car', p1.id)
 t2 = Thing(23, 'laptop', p2.id)
 session.add(t1)
-session.add(t1)
+session.add(t2)
 session.commit()
 
 r2 = session.query(Thing, Person).filter(Thing.owner == Person.id).filter(Person.name == 'Priya').all()
