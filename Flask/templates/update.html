@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Update List {% endblock %}
+
+{% block content %}
+<h2> Update your Task</h2>
+<form action="/update/{{task.sno}}" method="POST">
+    <div>
+        <label for="task_title">Task Title</label>
+        <input type="text" id="task_title" name="title" value="{{task.title}}">
+    </div>
+    <br>
+    <div>
+        <label for="task_desc">Task Description</label>
+        <input type="text" id="task_desc" name="desc" value="{{task.desc}}">
+    </div>
+    <br>
+    <div>
+        <label for="task_done">Task Done</label>
+        <input type="text" id="task_done" name="done" value="{{task.done}}">
+    </div>
+    <br>
+    <button type="submit">Update</button>
+    <br>
+</form>
+
+{% endblock %}
+
+{#<!-- #list.html, update.html, base.html and task_list.py --- are part of same program -->#}

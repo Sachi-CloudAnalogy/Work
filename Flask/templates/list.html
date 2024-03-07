@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!--To save data to database-->
+{% extends "base.html" %}
+
+{% block title %} Task List {% endblock %}
+
+{% block content %}
+
+    {#<!--To save data to database-->#}
     <h1>TASK LIST !!</h1>
     <h2>Enter new Tasks</h2>
     <form action="/" method="POST">
@@ -37,15 +35,23 @@
             <th>Task Title</th>
             <th>Task Description</th>
             <th>Done or Not</th>
+            <th>Action</th>
         </tr>
+
         {% for task in task_list %}
         <tr>
-            <td>{{task.sno}}</td>
+            <td scope="row">{{loop.index}}</td>   <!--to get serial no-->
             <td>{{task.title}}</td>
             <td>{{task.desc}}</td>
             <td>{{task.done}}</td>
+            <td>
+                <a href="/delete/{{task.sno}}" type="button" >Delete</a>
+                <a href="/update/{{task.sno}}" type="button" >Update</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
-</body>
-</html>
+
+{% endblock %}
+
+{#<!-- #list.html, update.html, base.html and task_list.py --- are part of same program -->#}
