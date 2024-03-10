@@ -6,12 +6,13 @@ cur = conn.cursor()
 cur.execute("create table employee1(id int primary key, name varchar(50), location varchar(50), salary int, department varchar(50))")
 
 f = open("csv.csv", "r")
+parameter = f.readline()
 while True:
     val = f.readline()
     if val == "":
         break
     else:
-        cur.execute(f"insert into employee1(id, name, location, salary, department) values({val})")
+        cur.execute(f"insert into employee1({parameter}) values({val})")
     
 f.close()
 cur.execute("select * from employee1")

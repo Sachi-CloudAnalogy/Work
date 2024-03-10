@@ -1,3 +1,4 @@
+id, name, location, salary, department
 101, 'priya', 'Delhi', 30000, 'it'
 102, 'rahul', 'Jaipur', 20000, 'marketing'
 103, 'jasmine', 'Agra', 10000, 'finance'
