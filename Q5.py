@@ -1,21 +1,41 @@
-#matrix [using list of lists]
+# Create a Python program to perform matrix multiplication using operator overloading.
 
-matrix1 = [[1, 2, 1], [2, 1, 1]]     #2*3 size
-print(matrix1)
-matrix2 = []
-row = int(input("No of rows = "))
-col = int(input("No of columns = "))
-print("Enter values rowwise :")
- 
-#taking values from user 
-for r in range(row):
-    mat = []
-    for c in range(col):
-        mat.append(int(input()))
-    matrix2.append(mat)    
+n = 3      #dimension of matrix = n*n
 
-#printing matrix
-for r in range(row):
-    for c in range(col):
-        print(matrix2[r][c], end = " ")    
-    print()    
+class Matrix:
+    def __init__(self):
+        self.arr = [[0 for i in range(n)]for j in range(n)]
+
+    def input(self, A):
+        for i in range(n):
+            for j in range(n):
+                self.arr[i][j] = A[i][j]
+
+    #operator overloading
+    def __mul__(self, x): 
+        mat = [[0 for i in range(n)]for j in range(n)]
+        for i in range(n):
+            for j in range(n):
+                mat[i][j] = 0
+                for k in range(n):
+                    mat[i][j] += self.arr[i][k] * x.arr[k][j]
+        #printing            
+        for i in range(n):
+            for j in range(n):
+                print(mat[i][j], end = " ")
+            print()           
+
+arr1 = [[1, 2, 3], 
+        [4, 5, 2], 
+        [7, 3, 1]]
+arr2 = [[7, 8, 9], 
+        [1, 2, 3], 
+        [4, 1, 2]]   
+
+mat1 = Matrix()
+mat2 = Matrix()
+mat1.input(arr1)
+mat2.input(arr2)
+
+print("multiplication of 2 matrix : ")
+mat1 * mat2
