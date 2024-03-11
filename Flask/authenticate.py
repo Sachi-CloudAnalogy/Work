@@ -1,3 +1,4 @@
+# User Authentication
 from flask import Flask, url_for, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy 
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -17,9 +18,10 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(50), nullable=False, unique=True)
-    password = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(5000), nullable=False, unique=True)
+    password = db.Column(db.String(5000), nullable=False)
 
     def __repr__(self):
         return f"({self.id}) {self.username} -- {self.password}"
@@ -33,30 +35,37 @@ def home():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    username = request.form.get("username")
-    password = request.form.get("password")
-    existing_user = User.query.filter_by(username=username).first()
-    if existing_user:
-        if bcrypt.checkpw(password, existing_user.password):
-            login_user(existing_user)
-            return redirect(url_for("dashboard"))
-
-    return render_template("login.html")
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            if bcrypt.checkpw(password.encode('utf-8'), existing_user.password.encode('utf-8')):
+                login_user(existing_user)
+                return redirect(url_for("dashboard"))
+            else:
+                raise Exception("Wrong password !!")
+        else:
+            raise Exception("Not a registered user, need to register first!!")   
+    else:
+        return render_template("login.html")
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    username = request.form.get("username")
-    password = request.form.get("password")
-    existing = User.query.filter_by(username=username).first()
-    if existing:
-        raise Exception("Username already exist !!")
-    else:
-        new_pass = bcrypt.hashpw(password, bcrypt.gensalt())             #hashing the password
-        new_user = User(username=username, password=new_pass)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for("login"))
-    return render_template("register.html")
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        existing = User.query.filter_by(username=username).first()
+        if existing:
+            raise Exception("Username already exist !!")
+        else:
+            new_pass = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')       #hashing the password
+            new_user = User(username=username, password=new_pass)
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for("login"))
+    else:    
+        return render_template("register.html")
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 @login_required

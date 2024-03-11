@@ -10,9 +10,9 @@ def code(email):
     token = jwt.encode({'email': email, 'expire': str(datetime.utcnow()+ timedelta(seconds=120))}, 
                        app.config['SECRET_KEY'])
     
-    return jsonify({'token': token.decode('utf-8')})
+    return jsonify({'token': token})
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-    #error
+   
